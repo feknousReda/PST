@@ -1,0 +1,18 @@
+workspaces select adidas.com-2018-11-06
+use recon/domains-hosts/bing_domain_web
+set SOURCE adidas.com
+run 
+use recon/domains-hosts/netcraft
+set SOURCE adidas.com
+run 
+use recon/domains-hosts/google_site_web
+set SOURCE adidas.com
+run 
+use recon/domains-hosts/brute_hosts
+set SOURCE adidas.com
+run 
+use recon/hosts-hosts/resolve
+set SOURCE default 
+use reporting/csv 
+run 
+exit() 
