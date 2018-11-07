@@ -18,6 +18,26 @@
 
 </form>
 <h2>{{text}}</h2>
+
+<table>
+  <tr>
+    <th>sous domaine</th>
+    <th>adresse ip</th>
+    <th>module</th>
+  </tr>
+
+
+
+{%for i in raws%}
+<tr>
+  {%for j in i%}
+    <td> {{j}} </td>
+
+
+{%endfor%}
+</tr>
+{%endfor%}
+</table>
   </div>
 
 </body>

@@ -13,8 +13,8 @@ class HomeView(TemplateView):
     def post(self, request):
         form = HomeForm(request.POST)
         if form.is_valid():
-            text = form.cleaned_data['Domaine']
-            backProcess.globalProcess(text)
+            url = form.cleaned_data['Domaine']
+            raws = backProcess.globalProcess(url)
             form = HomeForm()
-        args = {'form': form, 'text': text}
+        args = {'form': form, 'text': url,'raws': raws}
         return render(request, self.template_name, args)

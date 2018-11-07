@@ -1,9 +1,9 @@
 from recon.views import HomeView
 
-from django.conf.urls import url
+from django.urls import path
 
 
 urlpatterns = [
-    url(r'^$', HomeView.as_view(), name='recon'),
+    path('', HomeView.as_view(), name='recon'),
 
 ]
