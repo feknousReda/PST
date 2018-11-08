@@ -1,0 +1,9 @@
+workspaces select adidas.com nike.com-2018-11-08
+use recon/domains-hosts/bing_domain_web
+set SOURCE adidas.com nike.com
+run 
+use recon/hosts-hosts/resolve
+set SOURCE default 
+use reporting/csv 
+run 
+exit() 

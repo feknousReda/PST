@@ -2,6 +2,7 @@ from django.views.generic import TemplateView
 from django.shortcuts import render
 from recon.forms import HomeForm,SimpleForm
 from recon.back import backProcess
+import string
 
 class HomeView(TemplateView):
     template_name = 'recon/login.html'
@@ -10,7 +11,7 @@ class HomeView(TemplateView):
         form = HomeForm()
         sform = SimpleForm()
         done = False
-        args = args = {'form': form, 'done': done, 'sform': sform}
+        args  = {'form': form, 'done': done, 'sform': sform}
         return render(request, self.template_name, args)
 
     def post(self, request):
@@ -19,9 +20,38 @@ class HomeView(TemplateView):
         selected_modules = request.POST.getlist('favorite_modules')
 
         if form.is_valid():
-            url = form.cleaned_data['Domaine']
-            raws = backProcess.globalProcess(url, selected_modules)
-            form = HomeForm()
-            done = True
-        args = {'form': form, 'text': url,'raws': raws, 'done': done}
+            if len(selected_modules) != 0:
+                url = form.cleaned_data['Domaine']
+                listurl = url.split()
+                length = len(listurl)  == 1
+                print(length)
+                if " " in url:
+                    #print(type(url))
+
+                    lbdd = []
+                    for x in listurl:
+                        #print(type(lbdd))
+                        bdd = backProcess.globalProcess(x, selected_modules)
+                        print("global process")
+                        lbdd.append(bdd)
+                        form = HomeForm()
+                        sform = SimpleForm()
+                        print(lbdd)
+                    done = True
+                    length = len(listurl)  == 1
+                    print(length)
+                    args = {'form': form,'length': length, 'url': listurl,'raws': lbdd,'sform':sform,'done': done}
+
+                else:
+                    raws = backProcess.globalProcess(url, selected_modules)
+                    form = HomeForm()
+                    sform = SimpleForm()
+                    done = True
+                    args = {'form': form, 'length': length,'url': url,'raws': raws,'sform':sform,'done': done}
+            else:
+                form = HomeForm()
+                sform = SimpleForm()
+                msg = 'Please choose at least one module !'
+                args = {'form': form, 'msg': msg, 'sform': sform}
+
         return render(request, self.template_name, args)
