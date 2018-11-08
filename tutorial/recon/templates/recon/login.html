@@ -6,39 +6,34 @@
 </head>
 <body>
   <h1> Module de reconnaisance </h1>
-<div class="container">
+  <div class="container">
 
-<form method="post">
+    <form method="post">
 
-  {% csrf_token %}
+      {% csrf_token %}
+      {{ form.as_p }}
+      {{ sform.as_p }}
+      <button type="submit">Run Recon-ng</button>
+    </form>
 
-{{ form.as_p }}
+  <h2>{{text}}</h2>
+  {%if done%}
 
-        <button type="submit">Run Recon-ng</button>
-
-</form>
-<h2>{{text}}</h2>
-
-<table>
-  <tr>
-    <th>sous domaine</th>
-    <th>adresse ip</th>
-    <th>module</th>
-  </tr>
-
-
-
-{%for i in raws%}
-<tr>
-  {%for j in i%}
-    <td> {{j}} </td>
-
-
-{%endfor%}
-</tr>
-{%endfor%}
-</table>
+  <table>
+    <tr>
+      <th>Sous domaine</th>
+      <th>adresse ip</th>
+      <th>module</th>
+    </tr>
+    {%for i in raws%}
+    <tr>
+      {%for j in i%}
+      <td> {{j}} </td>
+      {%endfor%}
+    </tr>
+    {%endfor%}
+  </table>
+  {%endif%}
   </div>
-
 </body>
 </html>

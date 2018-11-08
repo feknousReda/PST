@@ -2,7 +2,7 @@ workspaces select teslamotors.com-2018-11-07
 use recon/domains-hosts/netcraft
 set SOURCE teslamotors.com
 run 
-use recon/domains-hosts/google_site_web
+use recon/domains-hosts/brute_hosts
 set SOURCE teslamotors.com
 run 
 use recon/domains-hosts/hackertarget
@@ -11,7 +11,7 @@ run
 use recon/domains-hosts/bing_domain_web
 set SOURCE teslamotors.com
 run 
-use recon/domains-hosts/brute_hosts
+use recon/domains-hosts/google_site_web
 set SOURCE teslamotors.com
 run 
 use recon/hosts-hosts/resolve

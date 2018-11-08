@@ -1,0 +1,9 @@
+workspaces select adidas.com-2018-11-08
+use recon/domains-hosts/hackertarget
+set SOURCE adidas.com
+run 
+use recon/hosts-hosts/resolve
+set SOURCE default 
+use reporting/csv 
+run 
+exit() 
